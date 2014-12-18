@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache;
+package com.github.benmanes.caffeine.cache.map;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.annotation.concurrent.NotThreadSafe;
 
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Caffeine<K, V> {
-  int initialCapacity;
+@NotThreadSafe
+public class BoundedLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
+  private static final long serialVersionUID = 1L;
+  private final int maximumSize;
 
-  public static Caffeine<Object, Object> newBuilder() {
-    return new Caffeine<Object, Object>();
+  public BoundedLinkedHashMap(boolean accessOrder, int maximumSize) {
+    super(maximumSize, 0.75f, accessOrder);
+    this.maximumSize = maximumSize;
   }
 
-  public void initialCapacity(int initialCapacity) {
-    this.initialCapacity = initialCapacity;
-  }
-
-  public <K1 extends K, V1 extends V> Cache<K1, V1> build() {
-    LocalCache<K1, V1> localCache = new UnboundedLocalCache<>(this);
-    return new LocalManualCache<K1, V1>(localCache);
+  @Override protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+    return size() > maximumSize;
   }
 }

@@ -15,19 +15,28 @@
  */
 package com.github.benmanes.caffeine.cache;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 
 import javax.annotation.Nullable;
-
-import com.google.common.cache.CacheLoader;
 
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 interface LocalCache<K, V> extends ConcurrentMap<K, V> {
 
+  long mappingCount();
+
   @Nullable V getIfPresent(Object key);
 
   V get(K key, CacheLoader<? super K, V> loader) throws ExecutionException;
+
+  Map<K, V> getAllPresent(Iterable<?> keys);
+
+  void invalidateAll();
+
+  void invalidateAll(Iterable<?> keys);
+
+  void cleanUp();
 }
