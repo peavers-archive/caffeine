@@ -18,11 +18,13 @@ package com.github.benmanes.caffeine.cache;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@Listeners(CacheValidationListener.class)
 @Test(dataProviderClass = CacheProvider.class)
 public final class CacheTest {
 
