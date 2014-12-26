@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public class PaddedAtomicBoolean<T> extends AtomicBoolean {
+public class PaddedAtomicBoolean extends AtomicBoolean {
   private static final long serialVersionUID = 1L;
 
   // Improve likelihood of isolation on <= 64 byte cache lines
