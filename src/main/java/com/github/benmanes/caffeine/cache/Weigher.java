@@ -25,6 +25,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 @ThreadSafe
+@FunctionalInterface
 public interface Weigher<K, V> {
 
   /**
