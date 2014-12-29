@@ -28,11 +28,11 @@ import javax.annotation.concurrent.ThreadSafe;
  * Implementations of this interface should avoid performing blocking calls or synchronizing on
  * shared resources.
  *
+ * @author ***REDACTED-EMAIL*** (Ben Manes)
  * @param <K> the most general type of keys this listener can listen for; for
  *     example {@code Object} if any key is acceptable
  * @param <V> the most general type of values this listener can listen for; for
  *     example {@code Object} if any key is acceptable
- * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 @ThreadSafe
 @FunctionalInterface
