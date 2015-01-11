@@ -25,7 +25,7 @@ import com.google.common.testing.SerializableTester;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class GuavaAdapterTest extends TestCase {
+public final class CaffeinatedGuavaTest extends TestCase {
 
   public void testSerializable() {
     SerializableTester.reserialize(CaffeinatedGuava.build(Caffeine.newBuilder()));
