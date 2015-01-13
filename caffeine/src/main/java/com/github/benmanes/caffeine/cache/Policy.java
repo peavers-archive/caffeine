@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public interface Advanced<K, V> {
+public interface Policy<K, V> {
 
   /**
    * Returns access to perform operations based on the maximum size or maximum weight eviction
