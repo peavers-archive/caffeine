@@ -13,20 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.tracing;
-
-import javax.annotation.concurrent.NotThreadSafe;
-
-import com.lmax.disruptor.EventHandler;
+package com.github.benmanes.caffeine.cache.tracing.async;
 
 /**
- * A cache event consumer that records to a log file.
- *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-@NotThreadSafe
-final class LogEventHandler implements EventHandler<CacheEvent> {
+final class CacheEvent {
+  enum Action { CREATE, READ, UPDATE, DELETE, EVICT }
 
-  @Override
-  public void onEvent(CacheEvent event, long sequence, boolean endOfBatch) throws Exception {}
+  Action action;
+
+  long timestamp;
+  int cacheId;
+  int hash;
 }
