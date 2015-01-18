@@ -16,13 +16,13 @@
 package com.github.benmanes.caffeine.cache.simulator.policy.classic;
 
 /**
- * Implements a least-recently-used cache based on linked nodes.
+ * Implements a clock (fifo with second chance) cache based on linked nodes.
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Lru extends AbstractLinkedPolicy {
+public final class Clock extends AbstractLinkedPolicy {
 
-  public Lru(String name) {
-    super(name, EvictionPolicy.LRU);
+  public Clock(String name) {
+    super(name, EvictionPolicy.CLOCK);
   }
 }

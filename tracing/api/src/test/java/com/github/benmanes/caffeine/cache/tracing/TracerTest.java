@@ -13,16 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.classic;
+package com.github.benmanes.caffeine.cache.tracing;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
+import org.testng.annotations.Test;
 
 /**
- * Implements a least-recently-used cache based on linked nodes.
- *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Lru extends AbstractLinkedPolicy {
+public final class TracerTest {
 
-  public Lru(String name) {
-    super(name, EvictionPolicy.LRU);
+  @Test
+  public void serviceLoader() {
+    Tracer defaultTracer = Tracer.getDefault();
+    assertThat(defaultTracer, is(Tracer.disabled()));
+  }
+
+  @Test
+  public void disabledTracer() {
+    Tracer tracer = Tracer.disabled();
+    tracer.recordCreate(new Object());
+    tracer.recordRead(new Object());
+    tracer.recordUpdate(new Object());
+    tracer.recordDelete(new Object());
   }
 }

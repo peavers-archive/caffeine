@@ -16,11 +16,13 @@
 package com.github.benmanes.caffeine.cache.simulator.policy.classic;
 
 /**
+ * Implements a first-in/first-out cache based on linked nodes.
+ *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public class Fifo extends AbstractLinkedPolicy {
+public final class Fifo extends AbstractLinkedPolicy {
 
   public Fifo(String name) {
-    super(name, false);
+    super(name, EvictionPolicy.FIFO);
   }
 }
