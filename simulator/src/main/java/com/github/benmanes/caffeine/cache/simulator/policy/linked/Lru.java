@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.classic;
+package com.github.benmanes.caffeine.cache.simulator.policy.linked;
 
 /**
  * Implements a least-recently-used cache based on linked nodes.

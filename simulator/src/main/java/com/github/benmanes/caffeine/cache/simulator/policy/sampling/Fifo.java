@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.classic;
+package com.github.benmanes.caffeine.cache.simulator.policy.sampling;
 
 /**
- * Implements a clock (fifo with second chance) cache based on linked nodes.
+ * Implements a first-in/first-out cache based on sampling the entries.
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Clock extends AbstractLinkedPolicy {
+public final class Fifo extends AbstractSamplingPolicy {
 
-  public Clock(String name) {
-    super(name, EvictionPolicy.CLOCK);
+  public Fifo(String name) {
+    super(name, EvictionPolicy.FIFO);
   }
 }
