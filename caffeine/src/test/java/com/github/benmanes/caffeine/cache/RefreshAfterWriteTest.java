@@ -16,6 +16,8 @@
 package com.github.benmanes.caffeine.cache;
 
 /**
+ * The test cases for caches that support the refresh after write policy.
+ *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 public final class RefreshAfterWriteTest {
