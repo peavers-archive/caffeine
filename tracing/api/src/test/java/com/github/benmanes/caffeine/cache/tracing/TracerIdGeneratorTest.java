@@ -13,16 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sampling;
+package com.github.benmanes.caffeine.cache.tracing;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
- * Implements a first-in/first-out cache based on sampling the entries.
- *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Fifo extends AbstractSamplingPolicy {
+public final class TracerIdGeneratorTest {
+  TracerIdGenerator generator = new TracerIdGenerator();
 
-  public Fifo(String name) {
-    super(name, EvictionPolicy.FIFO);
+  @Test
+  public void unique() {
+    long[] ids = new long[1024];
+    for (int i = 0; i < ids.length; i++) {
+      ids[i] = generator.nextId();
+    }
+    Set<Long> unique = new HashSet<Long>(ids.length);
+    for (long id : ids) {
+      if (!unique.add(id)) {
+        Assert.fail("Duplicate id detected: " + id);
+      }
+    }
   }
 }

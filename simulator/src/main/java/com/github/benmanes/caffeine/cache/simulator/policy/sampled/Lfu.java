@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sampling;
+package com.github.benmanes.caffeine.cache.simulator.policy.sampled;
 
 /**
  * Implements a least-frequently-used cache based on sampling the entries.

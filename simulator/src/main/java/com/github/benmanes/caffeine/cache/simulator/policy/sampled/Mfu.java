@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sampling;
-
-import akka.actor.UntypedActor;
-
-import com.github.benmanes.caffeine.cache.simulator.BasicSettings;
-import com.github.benmanes.caffeine.cache.simulator.policy.sampling.AbstractSamplingPolicy.Sample;
+package com.github.benmanes.caffeine.cache.simulator.policy.sampled;
 
 /**
+ * Implements a most-frequently-used cache based on sampling the entries.
+ *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-final class SamplingSettings extends BasicSettings {
+public final class Mfu extends AbstractSamplingPolicy {
 
-  public SamplingSettings(UntypedActor actor) {
-    super(actor);
-  }
-
-  public int sampleSize() {
-    return config().getInt("sampling.size");
-  }
-
-  public Sample sampleStrategy() {
-    return Sample.valueOf(config().getString("sampling.strategy").toUpperCase());
+  public Mfu(String name) {
+    super(name, EvictionPolicy.MFU);
   }
 }

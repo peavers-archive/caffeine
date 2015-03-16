@@ -13,16 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sampling;
+package com.github.benmanes.caffeine;
+
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Threads;
+
+import com.github.benmanes.caffeine.cache.tracing.TracerIdGenerator;
 
 /**
- * Implements a most-frequently-used cache based on sampling the entries.
- *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Mfu extends AbstractSamplingPolicy {
+@State(Scope.Benchmark)
+public class IdBenchmark {
+  TracerIdGenerator generator = new TracerIdGenerator();
 
-  public Mfu(String name) {
-    super(name, EvictionPolicy.MFU);
+  @Benchmark @Threads(4)
+  public void generate() {
+    generator.nextId();
   }
 }
