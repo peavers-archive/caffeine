@@ -18,6 +18,9 @@ package com.github.benmanes.caffeine.jcache.configuration;
 import javax.cache.event.CacheEntryEvent;
 import javax.cache.event.CacheEntryEventFilter;
 
+/**
+ * @author ***REDACTED-EMAIL*** (Ben Manes)
+ */
 public final class TestCacheEntryEventFilter
     implements CacheEntryEventFilter<Integer, Integer> {
   @Override public boolean evaluate(CacheEntryEvent<? extends Integer, ? extends Integer> event) {
