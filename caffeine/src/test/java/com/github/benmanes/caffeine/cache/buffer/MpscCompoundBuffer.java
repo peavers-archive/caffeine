@@ -24,7 +24,7 @@ import com.github.benmanes.caffeine.locks.NonReentrantLock;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-final class MpscCompoundBuffer implements Buffer {
+final class MpscCompoundBuffer implements ReadBuffer {
   final MpscCompoundQueue<Boolean> queue;
   final Lock evictionLock;
   long drained;
