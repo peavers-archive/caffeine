@@ -23,8 +23,8 @@ import com.github.benmanes.caffeine.base.UnsafeAccess;
 /**
  * A striped, non-blocking, bounded buffer.
  *
- * @param <E> the type of elements maintained by this buffer
  * @author ***REDACTED-EMAIL*** (Ben Manes)
+ * @param <E> the type of elements maintained by this buffer
  */
 final class BoundedBuffer<E> extends StripedBuffer<E> {
   /*
