@@ -26,6 +26,7 @@ import com.github.benmanes.caffeine.base.UnsafeAccess;
  * class, which is used to by atomic counters. The approach was modified to lazily grow an array of
  * buffers in order to minimize memory usage for caches that are not heavily contended on.
  *
+ * @author ***REDACTED-EMAIL*** (Doug Lea)
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 abstract class StripedBuffer<E> implements Buffer<E> {
