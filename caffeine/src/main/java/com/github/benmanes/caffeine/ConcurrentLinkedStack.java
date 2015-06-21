@@ -70,7 +70,6 @@ import com.github.benmanes.caffeine.base.UnsafeAccess;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  * @param <E> the type of elements held in this collection
  */
-@Beta
 @ThreadSafe
 public final class ConcurrentLinkedStack<E> extends CLSHeader.TopRef<E> implements Serializable {
 
