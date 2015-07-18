@@ -30,7 +30,11 @@ import com.typesafe.config.Config;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 public class BasicSettings {
-  public enum FileFormat { TEXT, BINARY }
+  public enum FileFormat {
+    CAFFEINE_TEXT,
+    CAFFEINE_BINARY,
+    LIRS,
+  }
 
   private final Config config;
 
