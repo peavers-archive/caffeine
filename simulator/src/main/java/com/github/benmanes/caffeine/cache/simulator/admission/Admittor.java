@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sampled;
-
-import com.github.benmanes.caffeine.cache.simulator.admission.Admittor;
+package com.github.benmanes.caffeine.cache.simulator.admission;
 
 /**
- * Implements a most-frequently-used cache based on sampling the entries.
- *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class Mfu extends AbstractSamplingPolicy {
+public interface Admittor {
 
-  public Mfu(String name, Admittor admittor) {
-    super(name, admittor, EvictionPolicy.MFU);
-  }
+  void record(int key);
+
+  boolean admit(int candidateKey, int victimKey);
 }

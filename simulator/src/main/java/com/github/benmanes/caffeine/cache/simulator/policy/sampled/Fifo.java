@@ -15,6 +15,8 @@
  */
 package com.github.benmanes.caffeine.cache.simulator.policy.sampled;
 
+import com.github.benmanes.caffeine.cache.simulator.admission.Admittor;
+
 /**
  * Implements a first-in/first-out cache based on sampling the entries.
  *
@@ -22,7 +24,7 @@ package com.github.benmanes.caffeine.cache.simulator.policy.sampled;
  */
 public final class Fifo extends AbstractSamplingPolicy {
 
-  public Fifo(String name) {
-    super(name, EvictionPolicy.FIFO);
+  public Fifo(String name, Admittor admittor) {
+    super(name, admittor, EvictionPolicy.FIFO);
   }
 }
