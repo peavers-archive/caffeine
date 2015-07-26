@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public interface TraceReader<E> {
+public interface TraceReader<E extends Comparable<E>> {
 
   /**
    * Creates a {@link Stream} that lazily reads the trace source.
