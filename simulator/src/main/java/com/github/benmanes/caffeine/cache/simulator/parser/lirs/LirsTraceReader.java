@@ -34,7 +34,6 @@ public final class LirsTraceReader extends TextTraceReader<Long> {
   @Override
   public Stream<Long> events() throws IOException {
     return lines()
-        .map(line -> line.trim())
         .filter(line -> !line.isEmpty())
         .filter(line -> !line.equals("*"))
         .map(Long::parseLong);
