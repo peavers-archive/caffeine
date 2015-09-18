@@ -25,11 +25,13 @@ import com.typesafe.config.Config;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 public final class CountMin4TinyLfu<E> implements Frequency<E> {
+  private static final int RANDOM_SEED = 1033096058;
+
   private final FrequencySketch<E> sketch;
 
   public CountMin4TinyLfu(Config config) {
     BasicSettings settings = new BasicSettings(config);
-    sketch = new FrequencySketch<>(settings.maximumSize());
+    sketch = new FrequencySketch<>(settings.maximumSize(), RANDOM_SEED);
   }
 
   @Override
