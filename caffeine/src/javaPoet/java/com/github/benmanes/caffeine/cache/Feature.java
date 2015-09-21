@@ -26,7 +26,7 @@ import com.google.common.base.CaseFormat;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-enum Feature {
+public enum Feature {
   STRONG_KEYS,
   WEAK_KEYS,
 
