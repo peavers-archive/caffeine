@@ -33,8 +33,8 @@ import org.testng.annotations.Test;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class JavaSerializationCopyStrategyTest {
-  final CopyStrategy copier = new JavaSerializationCopyStrategy();
+public final class JavaSerializationCopierTest {
+  final Copier copier = new JavaSerializationCopier();
 
   @Test(expectedExceptions = NullPointerException.class)
   public void null_object() {
