@@ -1,0 +1,16 @@
+***REDACTED-HOST***.store.DefaultStoreProviderFactory
+***REDACTED-HOST***.store.heap.OnHeapStoreProviderFactory
+***REDACTED-HOST***.store.offheap.OffHeapStoreProviderFactory
+***REDACTED-HOST***.store.disk.OffHeapDiskStoreProviderFactory
+***REDACTED-HOST***.store.tiering.CacheStoreProviderFactory
+***REDACTED-HOST***.store.tiering.CompoundCachingTierProviderFactory
+
+***REDACTED-HOST***.TimeSourceServiceFactory
+org.ehcache.spi.serialization.DefaultSerializationProviderFactory
+org.ehcache.spi.loaderwriter.DefaultCacheLoaderWriterProviderFactory
+org.ehcache.spi.event.DefaultCacheEventListenerProviderFactory
+***REDACTED-HOST***.executor.DefaultThreadPoolsServiceFactory
+***REDACTED-HOST***.persistence.DefaultLocalPersistenceServiceFactory
+org.ehcache.loaderwriter.writebehind.WriteBehindDecoratorLoaderWriterProviderFactory
+***REDACTED-HOST***.events.CacheEventNotificationListenerServiceProviderFactory
+org.ehcache.spi.copy.DefaultCopyProviderFactory
