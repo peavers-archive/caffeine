@@ -22,6 +22,7 @@ import com.github.benmanes.caffeine.cache.simulator.admission.Admittor;
 import com.github.benmanes.caffeine.cache.simulator.admission.TinyLfu;
 import com.github.benmanes.caffeine.cache.simulator.policy.Policy;
 import com.github.benmanes.caffeine.cache.simulator.policy.PolicyStats;
+import com.github.benmanes.caffeine.cache.simulator.policy.linked.SegmentedLruPolicy;
 import com.google.common.base.MoreObjects;
 import com.typesafe.config.Config;
 
@@ -29,14 +30,11 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
 /**
- * The Window TinyLfu algorithm where the main space uses Segmented Lru. The observation is that
- * objects with at least two accesses are much more popular than those with only one access during
- * a short interval. The main space is partitioned into two segments, probationary and protected, so
- * that popular items are kept in the cache for a longer time.
+ * The Window TinyLfu algorithm where the main space implements {@link SegmentedLruPolicy}.
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class SegmentedWindowTinyLfuPolicy implements Policy {
+public final class PartialSegmentedWindowTinyLfuPolicy implements Policy {
   private final Long2ObjectMap<Node> data;
   private final PolicyStats policyStats;
   private final int recencyMoveDistance;
@@ -54,11 +52,11 @@ public final class SegmentedWindowTinyLfuPolicy implements Policy {
   private int sizeProtected;
   private int mainRecencyCounter;
 
-  public SegmentedWindowTinyLfuPolicy(String name, Config config) {
-    SegmentedWindowTinyLfuSettings settings = new SegmentedWindowTinyLfuSettings(config);
+  public PartialSegmentedWindowTinyLfuPolicy(String name, Config config) {
+    PartialSegmentedWindowTinyLfuSettings settings = new PartialSegmentedWindowTinyLfuSettings(config);
     int maxMain = (int) (settings.maximumSize() * settings.percentMain());
     this.recencyMoveDistance = (int) (maxMain * settings.percentFastPath());
-    this.maxProtected = (int) (settings.maximumSize() * settings.percentMainProtected());
+    this.maxProtected = (int) (maxMain * settings.percentMainProtected());
     this.maxEden = settings.maximumSize() - maxMain;
     this.data = new Long2ObjectOpenHashMap<>();
     this.maximumSize = settings.maximumSize();
@@ -237,18 +235,18 @@ public final class SegmentedWindowTinyLfuPolicy implements Policy {
     }
   }
 
-  static final class SegmentedWindowTinyLfuSettings extends BasicSettings {
-    public SegmentedWindowTinyLfuSettings(Config config) {
+  static final class PartialSegmentedWindowTinyLfuSettings extends BasicSettings {
+    public PartialSegmentedWindowTinyLfuSettings(Config config) {
       super(config);
     }
     public double percentMain() {
-      return config().getDouble("segmented-window-tiny-lfu.percent-main");
+      return config().getDouble("partial-segmented-window-tiny-lfu.percent-main");
     }
     public double percentMainProtected() {
-      return config().getDouble("segmented-window-tiny-lfu.percent-main-protected");
+      return config().getDouble("partial-segmented-window-tiny-lfu.percent-main-protected");
     }
     public double percentFastPath() {
-      return config().getDouble("segmented-window-tiny-lfu.percent-fast-path");
+      return config().getDouble("partial-segmented-window-tiny-lfu.percent-fast-path");
     }
   }
 }
