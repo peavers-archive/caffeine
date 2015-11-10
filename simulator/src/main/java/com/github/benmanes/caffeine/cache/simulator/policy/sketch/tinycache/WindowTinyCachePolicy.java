@@ -22,6 +22,9 @@ import com.github.benmanes.caffeine.cache.simulator.policy.Policy;
 import com.github.benmanes.caffeine.cache.simulator.policy.PolicyStats;
 import com.typesafe.config.Config;
 
+/**
+ * @author ***REDACTED-EMAIL*** (Gil Einziger)
+ */
 public final class WindowTinyCachePolicy implements Policy {
   private final TinyCache window;
   private final PolicyStats policyStats;
