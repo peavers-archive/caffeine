@@ -26,7 +26,7 @@ import com.github.benmanes.caffeine.cache.simulator.parser.TextTraceReader;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class WikipediaTraceReader extends TextTraceReader<Long> {
+public final class WikipediaTraceReader extends TextTraceReader {
 
   public WikipediaTraceReader(String filePath) {
     super(filePath);

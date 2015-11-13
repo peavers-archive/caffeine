@@ -21,7 +21,7 @@ import java.util.stream.LongStream;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public interface TraceReader<E extends Comparable<E>> {
+public interface TraceReader {
 
   /**
    * Creates a {@link LongStream} that lazily reads the trace source.
