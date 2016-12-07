@@ -24,6 +24,7 @@ import com.github.benmanes.caffeine.cache.ReadBuffer;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("ImmutableEnumChecker")
 public enum BufferType {
   Ticket(TicketBuffer::new),
   FastFlow(FastFlowBuffer::new),

@@ -26,6 +26,7 @@ import com.typesafe.config.Config;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("ImmutableEnumChecker")
 public enum Admission {
   ALWAYS((config, policyStats) -> Admittor.always(), Function.identity()),
   TINYLFU(TinyLfu::new, name -> name + "_TinyLfu");
