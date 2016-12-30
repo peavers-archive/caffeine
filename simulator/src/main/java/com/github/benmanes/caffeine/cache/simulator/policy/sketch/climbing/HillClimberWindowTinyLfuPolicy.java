@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.policy.sketch.sliding;
+package com.github.benmanes.caffeine.cache.simulator.policy.sketch.climbing;
 
 import static com.google.common.base.Preconditions.checkState;
 import static java.util.stream.Collectors.toSet;
@@ -43,7 +43,7 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 @SuppressWarnings("PMD.TooManyFields")
-public final class SlidingWindowTinyLfuPolicy implements Policy {
+public final class HillClimberWindowTinyLfuPolicy implements Policy {
   private final Long2ObjectMap<Node> data;
   private final PolicyStats policyStats;
   private final Admittor admittor;
@@ -74,8 +74,10 @@ public final class SlidingWindowTinyLfuPolicy implements Policy {
   static final boolean debug = false;
   static final boolean trace = false;
 
-  public SlidingWindowTinyLfuPolicy(double percentMain, SlidingWindowTinyLfuSettings settings) {
-    String name = String.format("sketch.SlidingWindowTinyLfu (%.0f%%)", 100 * (1.0d - percentMain));
+  public HillClimberWindowTinyLfuPolicy(double percentMain,
+      HillClimberWindowTinyLfuPolicySettings settings) {
+    String name = String.format("sketch.HillClimberWindowTinyLfu (%.0f%%)",
+        100 * (1.0d - percentMain));
     this.policyStats = new PolicyStats(name);
     this.admittor = new TinyLfu(settings.config(), policyStats);
 
@@ -90,17 +92,18 @@ public final class SlidingWindowTinyLfuPolicy implements Policy {
 
     this.pivot = Math.min(settings.maximumPivot(),
         Math.max(1, (int) (settings.percentPivot() * maximumSize)));
+    this.tolerance = 100d * settings.tolerance();
     this.sampleSize = settings.sampleSize();
-    this.tolerance = settings.tolerance();
 
     printSegmentSizes();
   }
 
   /** Returns all variations of this policy based on the configuration parameters. */
   public static Set<Policy> policies(Config config) {
-    SlidingWindowTinyLfuSettings settings = new SlidingWindowTinyLfuSettings(config);
+    HillClimberWindowTinyLfuPolicySettings settings =
+        new HillClimberWindowTinyLfuPolicySettings(config);
     return settings.percentMain().stream()
-        .map(percentMain -> new SlidingWindowTinyLfuPolicy(percentMain, settings))
+        .map(percentMain -> new HillClimberWindowTinyLfuPolicy(percentMain, settings))
         .collect(toSet());
   }
 
@@ -371,27 +374,27 @@ public final class SlidingWindowTinyLfuPolicy implements Policy {
     }
   }
 
-  static final class SlidingWindowTinyLfuSettings extends BasicSettings {
-    public SlidingWindowTinyLfuSettings(Config config) {
+  static final class HillClimberWindowTinyLfuPolicySettings extends BasicSettings {
+    public HillClimberWindowTinyLfuPolicySettings(Config config) {
       super(config);
     }
     public List<Double> percentMain() {
-      return config().getDoubleList("sliding-window-tiny-lfu.percent-main");
+      return config().getDoubleList("hill-climber-window-tiny-lfu.percent-main");
     }
     public double percentMainProtected() {
-      return config().getDouble("sliding-window-tiny-lfu.percent-main-protected");
+      return config().getDouble("hill-climber-window-tiny-lfu.percent-main-protected");
     }
     public double percentPivot() {
-      return config().getDouble("sliding-window-tiny-lfu.percent-pivot");
+      return config().getDouble("hill-climber-window-tiny-lfu.percent-pivot");
     }
     public int maximumPivot() {
-      return config().getInt("sliding-window-tiny-lfu.maximum-pivot-size");
+      return config().getInt("hill-climber-window-tiny-lfu.maximum-pivot-size");
     }
     public int sampleSize() {
-      return config().getInt("sliding-window-tiny-lfu.sample-size");
+      return config().getInt("hill-climber-window-tiny-lfu.sample-size");
     }
     public double tolerance() {
-      return config().getInt("sliding-window-tiny-lfu.tolerance");
+      return config().getInt("hill-climber-window-tiny-lfu.tolerance");
     }
   }
 }
