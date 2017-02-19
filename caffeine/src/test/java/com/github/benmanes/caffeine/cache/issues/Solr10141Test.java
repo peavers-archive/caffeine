@@ -39,6 +39,7 @@ import com.github.benmanes.caffeine.testing.ConcurrentTestHarness;
  * @author ***REDACTED-EMAIL*** (Yonik Seeley)
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@Test(groups = "isolated")
 public final class Solr10141Test {
   static final int blocksInTest = 400;
   static final int maxEntries = blocksInTest / 2;
