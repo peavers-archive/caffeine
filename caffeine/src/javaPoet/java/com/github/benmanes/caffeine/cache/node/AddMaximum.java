@@ -26,6 +26,7 @@ import com.squareup.javapoet.TypeName;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class AddMaximum extends NodeRule {
 
   @Override

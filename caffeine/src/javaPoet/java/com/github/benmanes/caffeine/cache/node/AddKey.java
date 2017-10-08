@@ -27,6 +27,7 @@ import com.squareup.javapoet.FieldSpec;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class AddKey extends NodeRule {
 
   @Override

@@ -22,6 +22,7 @@ import com.squareup.javapoet.CodeBlock;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class LocalCacheSelectorCode {
   private final CodeBlock.Builder block;
 

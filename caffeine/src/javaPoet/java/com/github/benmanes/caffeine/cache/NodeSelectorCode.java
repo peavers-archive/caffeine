@@ -20,6 +20,7 @@ import com.squareup.javapoet.CodeBlock;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class NodeSelectorCode {
   private final CodeBlock.Builder block;
 

@@ -32,6 +32,7 @@ import com.squareup.javapoet.TypeName;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class AddExpiration extends NodeRule {
 
   @Override

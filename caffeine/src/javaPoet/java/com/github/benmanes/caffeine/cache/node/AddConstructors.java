@@ -30,6 +30,7 @@ import com.squareup.javapoet.MethodSpec;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class AddConstructors extends NodeRule {
 
   @Override
