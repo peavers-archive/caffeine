@@ -13,35 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.benmanes.caffeine.cache.simulator.parser.corda;
+package com.github.benmanes.caffeine.cache.simulator.parser.adapt_size;
 
-import java.io.DataInputStream;
+import static com.github.benmanes.caffeine.cache.simulator.policy.Policy.Characteristic.WEIGHTED;
+
 import java.io.IOException;
 import java.util.Set;
+import java.util.stream.Stream;
 
-import com.github.benmanes.caffeine.cache.simulator.parser.BinaryTraceReader;
+import com.github.benmanes.caffeine.cache.simulator.parser.TextTraceReader;
 import com.github.benmanes.caffeine.cache.simulator.policy.AccessEvent;
 import com.github.benmanes.caffeine.cache.simulator.policy.Policy.Characteristic;
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
- * A reader for the trace files provided by <a href="https://www.r3.com">R3</a>.
+ * A reader for the trace files provided by the authors of the AdaptSize algorithm. See
+ * <a href="https://github.com/dasebe/webcachesim#how-to-get-traces">traces</a>.
  *
- * @author ***REDACTED-EMAIL*** (Christian Sailer)
+ * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
-public final class CordaTraceReader extends BinaryTraceReader {
+public final class AdaptSizeReader extends TextTraceReader {
 
-  public CordaTraceReader(String filePath) {
+  public AdaptSizeReader(String filePath) {
     super(filePath);
   }
 
   @Override
   public Set<Characteristic> characteristics() {
-    return ImmutableSet.of();
+    return Sets.immutableEnumSet(WEIGHTED);
   }
 
   @Override
-  protected AccessEvent readEvent(DataInputStream input) throws IOException {
-    return AccessEvent.forKey(input.readLong());
+  public Stream<AccessEvent> events() throws IOException {
+    return lines()
+        .map(line -> line.split(" ", 3))
+        .map(array -> AccessEvent.forKeyAndWeight(
+            Long.parseLong(array[1]), Integer.parseInt(array[2])));
   }
 }
