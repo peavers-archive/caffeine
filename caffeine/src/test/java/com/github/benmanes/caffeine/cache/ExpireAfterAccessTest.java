@@ -61,6 +61,7 @@ import com.google.common.collect.ImmutableMap;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 @Listeners(CacheValidationListener.class)
+@SuppressWarnings("PreferJavaTimeOverload")
 @Test(dataProviderClass = CacheProvider.class)
 public final class ExpireAfterAccessTest {
 

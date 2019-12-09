@@ -23,6 +23,7 @@ import org.awaitility.core.ConditionFactory;
 /**
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("PreferJavaTimeOverload")
 public final class Awaits {
 
   private Awaits() {}

@@ -81,6 +81,7 @@ import com.google.common.collect.Maps;
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
 @Listeners(CacheValidationListener.class)
+@SuppressWarnings("PreferJavaTimeOverload")
 @Test(dataProviderClass = CacheProvider.class)
 public final class ExpirationTest {
 

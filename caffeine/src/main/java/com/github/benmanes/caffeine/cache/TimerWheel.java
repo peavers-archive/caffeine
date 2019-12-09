@@ -39,6 +39,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * @author ***REDACTED-EMAIL*** (Ben Manes)
  */
+@SuppressWarnings("GuardedBy")
 final class TimerWheel<K, V> {
 
   /*
